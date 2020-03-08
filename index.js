@@ -20,14 +20,14 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   /**
-   * Create options from setting.
+   * Create option from setting.
    *
    * @param   object
    * @param   object
    * @param   object
    * @return  object
    */
-  const getOptions = function (options, headers, body) {
+  const createOption = function (options, headers, body) {
     let currentOptions = {...setting.options, ...options}
 
     currentOptions.headers = {...setting.headers, ...headers}
@@ -63,7 +63,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
    * @return  promise
    */
   this.get = function (url, {options = {}, headers = {}} = {}) {
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, null))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, null))
   }
 
   /**
@@ -78,7 +78,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
   }
 
   /**
@@ -93,7 +93,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
   }
 
 
@@ -109,7 +109,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'multipart/form-data'
 
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
   }
 
   /**
@@ -124,7 +124,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/json'
 
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, JSON.stringify(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, JSON.stringify(body)))
   }
 
   /**
@@ -139,12 +139,11 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/json'
 
-    return fetch(`${setting.origin}/${url}`, getOptions(options, headers, JSON.stringify(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, JSON.stringify(body)))
   }
 
   // Pre-setup initialization
   setup()
 }
-
 
 module.exports = Petch

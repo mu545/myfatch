@@ -1,6 +1,6 @@
 {
   "name": "petch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Alternative javascript fetch api with adding pre-setup options for every request",
   "main": "index.js",
   "scripts": {
