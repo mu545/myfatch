@@ -20,7 +20,7 @@ const petch = new Petch({
     mode: 'cors'
   },
   headers: {
-    'Accept-Type': 'application/json'
+    'Accept': 'application/json'
   }
 })
 ```

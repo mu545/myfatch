@@ -82,6 +82,21 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   /**
+   * Request with put method.
+   *
+   * @param   string
+   * @param   object
+   * @return  promise
+   */
+  this.putData = function (url, {options = {}, headers = {}, body = {}} = {}) {
+    options['method'] = 'PUT'
+
+    headers['Content-Type'] = 'application/x-www-form-urlencoded'
+
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
+  }
+
+  /**
    * Request with delete method.
    *
    * @param   string
@@ -121,6 +136,21 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
    */
   this.postJSON = function (url, {options = {}, headers = {}, body = {}} = {}) {
     options['method'] = 'POST'
+
+    headers['Content-Type'] = 'application/json'
+
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, JSON.stringify(body)))
+  }
+
+  /**
+   * Request with put data to send json body.
+   *
+   * @param   string
+   * @param   object
+   * @return  promise
+   */
+  this.putJSON = function (url, {options = {}, headers = {}, body = {}} = {}) {
+    options['method'] = 'PUT'
 
     headers['Content-Type'] = 'application/json'
 
