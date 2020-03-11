@@ -56,6 +56,21 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   /**
+   * Allow to access current setting.
+   */
+  this.setting = {
+    get origin() {
+      return setting.origin
+    },
+    get options() {
+      return setting.options
+    },
+    get headers() {
+      return setting.headers
+    }
+  }
+
+  /**
    * Request with get method.
    *
    * @param   string
