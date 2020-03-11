@@ -9,17 +9,6 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   /**
-   * Apply all received setting parameters.
-   *
-   * @return  void
-   */
-  const setup = function () {
-    setting.origin = origin || setting.origin
-    setting.options = {...setting.options, ...options}
-    setting.headers = {...setting.headers, ...headers}
-  }
-
-  /**
    * Create option from setting.
    *
    * @param   object
@@ -53,6 +42,32 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
     }
 
     return formData
+  }
+
+  /**
+   * Allow to access current setting.
+   */
+  this.setting = {
+    get origin() {
+      return setting.origin
+    },
+    get options() {
+      return setting.options
+    },
+    get headers() {
+      return setting.headers
+    }
+  }
+
+  /**
+   * Change current setting.
+   *
+   * @return  void
+   */
+  this.setup = function ({origin = null, options = {}, headers = {}}) {
+    setting.origin = origin || setting.origin
+    setting.options = {...setting.options, ...options}
+    setting.headers = {...setting.headers, ...headers}
   }
 
   /**
@@ -173,7 +188,8 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   // Pre-setup initialization
-  setup()
+  // Apply all received setting parameters.
+  self.setup({origin, options, headers})
 }
 
 module.exports = Petch
