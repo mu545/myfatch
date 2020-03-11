@@ -25,6 +25,26 @@ const petch = new Petch({
 })
 ```
 
+## Access current setting
+After setup, we can be accessing current setting `origin`, `options` and `headers` from `setting` property.
+
+```js
+console.log('current origin: ', petch.setting.origin)
+console.log('current options object: ', petch.setting.options)
+console.log('current headers object: ', petch.setting.headers)
+```
+
+## Re-setup current setting
+The current setting can be changed or add a new property from `setup()`.
+
+```js
+petch.setup({
+  headers: {
+    'Authorization': 'auth_key'
+  }
+})
+```
+
 The `Petch()` accept one setting parameter with optionaly settings.
 
 | Name | Type | Description |
