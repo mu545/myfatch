@@ -45,6 +45,22 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
   }
 
   /**
+   * Create url search params.
+   *
+   * @param   object
+   * @return  object
+   */
+  const createURLSearchParams = function (body) {
+    let urlSearchParams = new URLSearchParams()
+
+    for (var field in body) {
+      urlSearchParams.append(field, body[field])
+    }
+
+    return urlSearchParams
+  }
+
+  /**
    * Allow to access current setting.
    */
   this.setting = {
@@ -93,7 +109,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
-    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createURLSearchParams(body)))
   }
 
   /**
@@ -108,7 +124,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
-    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createURLSearchParams(body)))
   }
 
   /**
@@ -123,7 +139,7 @@ function Petch ({origin = null, options = {}, headers = {}} = {}) {
 
     headers['Content-Type'] = 'application/x-www-form-urlencoded'
 
-    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createFormData(body)))
+    return fetch(`${setting.origin}/${url}`, createOption(options, headers, createURLSearchParams(body)))
   }
 
 
