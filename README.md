@@ -45,7 +45,7 @@ petch.setup({
 })
 ```
 
-The `Petch()` accept one setting parameter with optionaly settings.
+The `Petch()` and `setup()` accept one setting parameter with optionaly settings.
 
 | Name | Type | Description |
 |--|--|--|
@@ -65,7 +65,7 @@ petch.get('users')
 ```
 
 ### postData()
-Send request with method **POST**. Automaticaly add headers **Content-Type** with value `application/x-www-form-urlencoded` and transform body object into form data.
+Send request with method **POST**. Automaticaly add headers **Content-Type** with value `application/x-www-form-urlencoded` and transform body object into URL-encoded string.
 
 ```js
 petch.postData('login', {
